@@ -1,0 +1,10 @@
+SELECT request_uri, remoteip, requestdatetime
+FROM muralirajendran_staticwebsite_accesslogs_db.StaticWebsiteHostingAccessLogging
+WHERE REGEXP_LIKE(request_uri, 'Murali_Rajendran\.pdf')
+
+-- SELECT count(*)
+-- FROM (
+--   SELECT request_uri, remoteip, requestdatetime
+--   FROM muralirajendran_staticwebsite_accesslogs_db.StaticWebsiteHostingAccessLogging
+--   WHERE REGEXP_LIKE(request_uri, 'Murali_Rajendran\.pdf')
+-- );

@@ -1,0 +1,2 @@
+SELECT COUNT(*) AS total_requests
+FROM "muralirajendran_staticwebsite_accesslogs_db"."StaticWebsiteHostingAccessLogging";

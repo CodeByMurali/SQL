@@ -1,0 +1,4 @@
+SELECT remoteip, count(*) as access_count 
+FROM "muralirajendran_staticwebsite_accesslogs_db"."staticwebsitehostingaccesslogging"
+group by remoteip
+order by access_count desc;

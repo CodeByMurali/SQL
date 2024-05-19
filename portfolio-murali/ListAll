@@ -1,0 +1,1 @@
+SELECT * FROM "muralirajendran_staticwebsite_accesslogs_db"."staticwebsitehostingaccesslogging" limit 1000;

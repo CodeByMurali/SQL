@@ -1,0 +1,43 @@
+CREATE EXTERNAL TABLE IF NOT EXISTS `muralirajendran_staticwebsite_accesslogs_db`.`StaticWebsiteHostingAccessLogging`(
+  `bucketowner` string COMMENT '', 
+  `bucket_name` string COMMENT '', 
+  `requestdatetime` string COMMENT '', 
+  `remoteip` string COMMENT '', 
+  `requester` string COMMENT '', 
+  `requestid` string COMMENT '', 
+  `operation` string COMMENT '', 
+  `key` string COMMENT '', 
+  `request_uri` string COMMENT '', 
+  `httpstatus` string COMMENT '', 
+  `errorcode` string COMMENT '', 
+  `bytessent` bigint COMMENT '', 
+  `objectsize` bigint COMMENT '', 
+  `totaltime` string COMMENT '', 
+  `turnaroundtime` string COMMENT '', 
+  `referrer` string COMMENT '', 
+  `useragent` string COMMENT '', 
+  `versionid` string COMMENT '', 
+  `hostid` string COMMENT '', 
+  `sigv` string COMMENT '', 
+  `ciphersuite` string COMMENT '', 
+  `authtype` string COMMENT '', 
+  `endpoint` string COMMENT '', 
+  `tlsversion` string COMMENT '', 
+  `accesspointarn` string COMMENT '', 
+  `aclrequired` string COMMENT '')
+ROW FORMAT SERDE 
+  'org.apache.hadoop.hive.serde2.RegexSerDe' 
+WITH SERDEPROPERTIES ( 
+  'input.regex'='([^ ]*) ([^ ]*) \\[(.*?)\\] ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) (\"[^\"]*\"|-) (-|[0-9]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) (\"[^\"]*\"|-) ([^ ]*)(?: ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*))?.*$') 
+STORED AS INPUTFORMAT 
+  'org.apache.hadoop.mapred.TextInputFormat' 
+OUTPUTFORMAT 
+  'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION 's3://muralirajendran.click-access-logs/'
+TBLPROPERTIES (
+  'projection.enabled'='true', 
+  'projection.timestamp.format'='yyyy/MM/dd', 
+  'projection.timestamp.interval'='1', 
+  'projection.timestamp.interval.unit'='DAYS', 
+  'projection.timestamp.range'='2024/01/01,NOW', 
+  'projection.timestamp.type'='date')

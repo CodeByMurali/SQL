@@ -1,0 +1,4 @@
+SELECT httpstatus, COUNT(*) AS request_count
+FROM "muralirajendran_staticwebsite_accesslogs_db"."StaticWebsiteHostingAccessLogging"
+GROUP BY httpstatus
+ORDER BY httpstatus;
